@@ -15,17 +15,20 @@ class Recipe extends Model
         'name',
         'category_id',
         'description',
-        'image',
         'is_active'
+    ];
+
+    protected $attributes = [
+        'is_active' => false
     ];
 
     public function ingredients(): BelongsToMany
     {
-        return $this->belongsToMany('ingredient::class');
+        return $this->belongsToMany(Ingredient::class);
     }
 
     public function category(): BelongsTo
     {
-        return $this->belongsTo('category::class');
+        return $this->belongsTo(Category::class);
     }
 }

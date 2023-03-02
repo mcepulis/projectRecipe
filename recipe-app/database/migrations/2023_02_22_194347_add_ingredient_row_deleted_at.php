@@ -9,11 +9,10 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
-        Schema::table('recipes', function(Blueprint $table) {
-            $table->unsignedBigInteger('ingredient_id')->nullable()->after('name');
-            $table->foreign('ingredient_id')->on('ingredients')->references('id');
+        Schema::table('ingredients', function(Blueprint $table) {
+            $table->softDeletes($column = 'deleted_at', $precision = 0);
         });
     }
 

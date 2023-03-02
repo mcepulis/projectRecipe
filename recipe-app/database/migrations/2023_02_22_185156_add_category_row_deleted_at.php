@@ -9,17 +9,18 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
-        Schema::rename('table_ingredient_recipe','ingredient_recipe');
+        Schema::table('categories', function(Blueprint $table) {
+            $table->softDeletes($column = 'deleted_at', $precision = 0);
+        });
     }
-    
 
     /**
      * Reverse the migrations.
      */
-    public function down()
+    public function down(): void
     {
-        Schema::rename('ingredient_recipe','table_ingredient_recipe');
+        //
     }
 };
