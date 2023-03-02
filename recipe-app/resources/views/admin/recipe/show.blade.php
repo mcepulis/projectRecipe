@@ -1,6 +1,5 @@
-@section('title', 'Recipe')
-
-@extends('components.min_layout')
+@extends('components.layout')
+@section('title', 'Ingredients')
 
 @section('content')
 

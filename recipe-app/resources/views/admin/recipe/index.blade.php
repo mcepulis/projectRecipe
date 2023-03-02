@@ -25,10 +25,10 @@
     <tr>
         <th scope="row">{{ $recipe->id }}</th>
         <td class="list-group-flush" >
-            <a href="{{ url('recipe', ['id' => $recipe->id]) }}" class="list-group-item list-group-item-action">{{ $recipe->name }}</a>
+            <a href="{{ url('admin/recipe', ['id' => $recipe->id]) }}" class="list-group-item list-group-item-action">{{ $recipe->name }}</a>
         </td>
         <td class="list-group-flush" >
-            <a href="{{ url('recipe', ['id' => $recipe->id]) }}" class="list-group-item list-group-item-action">{{ $recipe->description }}</a>
+            <a href="{{ url('admin/recipe', ['id' => $recipe->id]) }}" class="list-group-item list-group-item-action">{{ $recipe->description }}</a>
         </td>
 
         <td>
