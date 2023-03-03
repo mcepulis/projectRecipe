@@ -36,7 +36,7 @@ class FrontController extends Controller
         $categories = Category::where('is_active', '=', 1)->get();
  
         return view('front/index', [
-            'recipes' => $recipes->paginate(5),
+            'recipes' => $recipes->paginate(20),
             'categories' => $categories,
             'category_id' => $request->query('category_id'),
             'name' => $request->query('name'),
