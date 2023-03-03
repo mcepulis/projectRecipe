@@ -1,9 +1,10 @@
 @extends('components.layout')
+
 @section('title', 'Ingredients')
 
 @section('content')
 
-<div class="container">
+<div class="container panel">
     <div class="row">
 
         <div class="col text-center">
@@ -32,7 +33,7 @@
         </div>
     </div>
 <br>
-    <div class="row">
+    <div class="card-body">
     <div class="col text-center">
         <div class="card">
             Description: {{$recipe->description}}</div>
