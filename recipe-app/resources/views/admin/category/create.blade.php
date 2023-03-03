@@ -10,7 +10,7 @@
 
 <form action="{{ url('admin/categories/create') }}" method="post" class="row g-3">
 
-    <!-- @if ($errors->any())
+    @if ($errors->any())
      <div class="alert alert-danger">
          <ul>
              @foreach ($errors->all() as $error)
@@ -18,7 +18,7 @@
              @endforeach
          </ul>
      </div>
- @endif -->
+ @endif
 
     @csrf
     <div class="form-group">
@@ -28,18 +28,6 @@
         <div class="invalid-feedback">{{ $message }}</div><br>
         @enderror
     </div>
-    
-
-    <!-- <div class="form-group">
-        <label class="form-label">Parent category:</label>
-        <select name="category_id" class="form-control">
-            <option value="">--</option>
-            @foreach($categories as $category)
-            <option value="{{ $category->id }}">{{ $category->name }}</option>
-            @endforeach
-        </select>
-    </div> -->
-
 
     <div class="form-group">
         <input type="checkbox" name="is_active" class="form-check-input" value="1" @if (old('is_active')) checked @endif>

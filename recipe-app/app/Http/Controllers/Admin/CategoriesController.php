@@ -15,11 +15,8 @@ class CategoriesController extends Controller
 {
     public function index(): View
     {
-        // select * from categories
+       
         $categories = Category::all();
-
-        //jei noriu atfiltruoti, pvz, tik ištrinta ssu softDelete:
-        //$categories = Category::onlyTrashed()->get();
 
         return view('admin/category/index', [
             'categories' => $categories
@@ -29,10 +26,9 @@ class CategoriesController extends Controller
     public function create(): View
     {
 
-        // SELECT * FROM categories WHERE category_id IS NULL
+        
         $categories = Category::where('id', null)->get();
-        //get'as naudojamas kuriant querius su where, join ir pan.
-        //get'as nereikalingas ant all, find
+        
 
         return view('admin/category/create', [
             'categories' => $categories
@@ -41,7 +37,7 @@ class CategoriesController extends Controller
 
     public function edit(int $id, Request $request)
     {
-        $category = Category::find($id); //=select * from categories where id = {$id} = new Category()
+        $category = Category::find($id); 
         if ($category === null) {
             abort(404);
         }
@@ -53,10 +49,7 @@ class CategoriesController extends Controller
             );
 
 
-            // $request->validated();
-
-
-            // $category->name = $request->post('name');
+            
             $category->fill($request->all());
             $category->is_active = $request->post('is_active', false);
             $category->save();
@@ -64,8 +57,7 @@ class CategoriesController extends Controller
             $categories = Category::where('id', null)->get();
 
 
-            // arba kitas metodas, vietoj 3 eiluciu tik viena:
-            // $category->update($request->all());
+            
             return redirect('admin/categories')->with('success', 'Category updated successfully!');
         }
 
@@ -78,16 +70,14 @@ class CategoriesController extends Controller
     }
     public function show(int $id): View
     {
-        // dd($id);
+        
         $category = Category::find($id);
-        // dd($category->books);
-        // $category->books;
+        
 
         if ($category === null) {
             abort(404);
         }
-        // $category->books;
-        // $book->category;
+        
 
         return view('categories/show', [
             'category' => $category
@@ -106,16 +96,16 @@ class CategoriesController extends Controller
     }
     public function delete(int $id)
     {
-        //1. Gaunam pagal id kokia kategorija isvalyt
+        
         $category = Category::find($id);
-        //2. Patikrinam ar tokia egzistuoja
+        
         if ($category === null) {
-            //3. jeigu neegzistuoja metam 404
+            
             abort(404);
         }
-        //4. jeigu egzistuoja isvalom
+       
         $category->delete();
-        //5. Po sėkmingo išvalymo redirectinam su sėkmės pranešimu.
+        
         return redirect('admin/categories')->with('success', 'Category removed successfully!');
     }
 }

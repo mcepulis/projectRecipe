@@ -17,9 +17,6 @@ use App\Http\Controllers\Admin\RecipeController;
 |
 */
 Route::get('/', [FrontController::class, 'index']);
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -32,8 +29,6 @@ Route::middleware('auth')->group(function () {
 });
 
 
-
-// Route::get('/', [RecipeController::class, 'index']);
 Route::get('/', [FrontController::class, 'home']);
 Route::get('recipes', [FrontController::class, 'index']);
 Route::get('recipe/{id}', [FrontController::class, 'show'])->whereNumber('id');

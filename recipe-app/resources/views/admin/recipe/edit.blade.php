@@ -8,7 +8,7 @@
 @include('components.alert.success_message')
 
 
-<form action="{{ route('recipe.edit', ['id' => $recipe->id]) }}" method="post" class="row g-3">
+<form action="{{ route('recipe.edit', ['id' => $recipe->id]) }}" method="post" class="row g-3" enctype="multipart/form-data">
     
 
     @if ($errors->any())
@@ -31,15 +31,38 @@
     </div>
 
     <div class="form-group">
+        <label class="form-label">Category:</label>
+        <select name="category_id" class="form-control">
+            @foreach($categories as $category)
+            <option @if(old('category_id', isset($recipe->category->id) ? $recipe->category->id : null) == $category->id) selected @endif value="{{ $category->id }}">{{ $category->name }}</option>
+            @endforeach
+        </select>
+
+        <div class="form-group">
+        <label class="form-label">Ingredients:</label>
+        <select name="ingredient_id[]" class="form-control" multiple>
+            @foreach($ingredients as $ingredient)
+            <option value="{{ $ingredient->id }}">{{ $ingredient->name }}</option>
+            @endforeach
+        </select>
+    </div>
+
+    
+    <div class="form-group">
         <label class="form-label">Description:</label>
         <input type="text" name="description" value="{{ old('description', $recipe->description) }}" class="form-control @error('description') is-invalid @enderror" placeholder="Description">
         @error('description')
         <div class="invalid-feedback">{{ $message }}</div><br>
         @enderror
     </div>
-   
+
+    <div class="col-12">
+        <label class="form-label">Image</label>
+        <input type="file" name="image" class="form-control">
+    </div>
+
     <div class="form-group">
-        <input type="checkbox" name="is_active" class="form-check-input" value="1" @if (old('is_active', $recipe->is_active)) checked @endif>
+        <input type="checkbox" name="is_active" class="form-check-input" value="1" @if (old('is_active')) checked @endif>
         <label class="form-check-label">is_active?</label>
     </div>
     <div class="col-12">
